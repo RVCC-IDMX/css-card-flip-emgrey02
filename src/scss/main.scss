@@ -22,9 +22,17 @@ $level-three: translateZ(2rem);
     }
   }
 
-  &:hover .card__content,
-  &:focus-within .card__content {
+  &:active .card__content {
     transform: rotateY(.5turn);
+  }
+
+  @media (hover) {
+    
+    &:hover .card__content,
+    &:focus-within .card__content {
+      transform: rotateY(.5turn);
+    }
+
   }
   
   &__front, 
