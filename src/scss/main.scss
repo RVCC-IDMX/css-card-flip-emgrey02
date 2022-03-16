@@ -1,9 +1,7 @@
 @use "base/reset";
 @use "base/fonts";
+@use 'base/variables' as var;
 
-$level-one: translateZ(10rem);
-$level-two: translateZ(4rem);
-$level-three: translateZ(2rem);
 
 .card {
   width: 350px;
@@ -16,28 +14,29 @@ $level-three: translateZ(2rem);
     position: relative;
     padding: 5em;
     transform-style: preserve-3d;
-
+    
     @media (prefers-reduced-motion: 'no-preference') {
       transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
   }
-
-  &:focus-within .card__content {
-    transform: rotateY(.5turn);
-  }
-
+  
   @media (hover) {
-    
-    &:hover .card__content,
+    &:hover .card__content, 
     &:focus-within .card__content {
       transform: rotateY(.5turn);
     }
-
   }
-  
+
+  @media (hover: none) {
+    .card__content {
+      transform: rotateY(.5turn);
+    }
+  }
+
   &__front, 
   &__back {
-    color: hsl(214, 71%, 90%);
+    background-color: var.$bkgd-color-400;
+    color: var.$text-color;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -50,15 +49,15 @@ $level-three: translateZ(2rem);
   
   &__title {
     font-size: 4.3rem;
-    transform: $level-one;
+    transform: var.$level-one;
     position: relative;
     padding-block: 2.5em .5rem;
   }
   
   &__subtitle {
-    color:hsl(55, 17%, 47%);
+    color: var.$accent-color;
     font-size: 1.2rem;
-    transform: $level-two;
+    transform: var.$level-two;
   }
   
   &__body {
@@ -71,16 +70,15 @@ $level-three: translateZ(2rem);
   }
 
   &__front {
-    background-color: hsl(216, 40%, 26%);
     background-image: url('/src/images/taemin.jpg');
     background-size: cover;
     background-blend-mode: overlay;
     
     &::before {
       content: "";
-      border: 3px solid hsl(55, 17%, 47%);
+      border: 3px solid var.$accent-color;
       position: absolute;
-      transform: $level-three;
+      transform: var.$level-three;
       top: 8px;
       left: 8px;
       bottom: 8px;
@@ -90,7 +88,6 @@ $level-three: translateZ(2rem);
 
   &__back {
     transform: rotateY(.5turn);
-    background-color: hsl(216, 40%, 26%);
     transform-style: preserve-3d;
 
     &--name {
@@ -99,7 +96,7 @@ $level-three: translateZ(2rem);
       left: 0;  
       margin-inline: auto;
       padding-block: 1rem;
-      background-color: hsl(216, 40%, 16%);
+      background-color: var.$bkgd-color-500;
       width: 100%;  
     }
   }
@@ -109,9 +106,9 @@ hr {
   width: 90%;
   height: 2px;
   border-width: 0;
-  background-color:hsl(55, 17%, 47%);
+  background-color:var.$accent-color;
   margin-inline: auto;
-  transform: $level-three;
+  transform: var.$level-three;
 }
 
 .stat-container {
@@ -120,7 +117,7 @@ hr {
   align-items: start;
   justify-content: center;
   padding-block: 2rem;
-  transform: $level-two;
+  transform: var.$level-two;
 }
 
 .debut {
@@ -129,7 +126,7 @@ hr {
   padding-block-end: 2rem;
   letter-spacing: .5ch;
   padding-inline-start: .5ch;
-  transform: $level-two;
+  transform: var.$level-two;
 
   &__title {
     font-size: 1.3rem;
@@ -138,8 +135,7 @@ hr {
   &__year {
     position: relative;
     font-size: 3rem;
-    color: hsl(55, 17%, 47%);
-    
+    color: var.$accent-color;
   }
 }
 
@@ -153,7 +149,7 @@ hr {
     justify-content: center;
     gap: .5rem;
     font-size: 3rem;
-    color: hsl(55, 17%, 47%);
+    color: var.$accent-color;
     line-height: 1.4;
   }
 
@@ -177,7 +173,7 @@ hr {
   width: 70%;
   margin-inline: auto;
   margin-block-start: 2rem;
-  transform: $level-two;
+  transform: var.$level-two;
 
   &__title {
     text-transform: uppercase;
@@ -193,6 +189,6 @@ hr {
     justify-content: space-around;
     font-size: 1.5rem;
     line-height: 1;
-    color:hsl(55, 17%, 47%);
+    color:var.$accent-color;
   }
 }

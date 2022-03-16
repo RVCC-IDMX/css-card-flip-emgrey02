@@ -1,3 +1,5 @@
+@use 'variables' as var;
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -18,5 +20,5 @@ li {
 }
 
 *:focus-within {
-    outline: none;
+    height: 575px;
 }
