@@ -16,3 +16,7 @@ ul {
 li {
     padding-block: 10px;
 }
+
+*:focus-within {
+    outline: none;
+}

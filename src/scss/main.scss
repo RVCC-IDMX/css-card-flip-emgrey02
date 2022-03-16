@@ -22,7 +22,7 @@ $level-three: translateZ(2rem);
     }
   }
 
-  &:active .card__content {
+  &:focus-within .card__content {
     transform: rotateY(.5turn);
   }
 
