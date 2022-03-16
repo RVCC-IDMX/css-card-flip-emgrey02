@@ -1,26 +1,29 @@
 @use "base/reset";
 @use "base/fonts";
 
-$level-one: translateZ(8rem);
+$level-one: translateZ(10rem);
 $level-two: translateZ(4rem);
 $level-three: translateZ(2rem);
 
 .card {
-  width: 400px;
+  width: 350px;
   height: auto;
   margin-inline: auto;
-  padding-block: 3rem;
-  
+  padding-block: 3rem;  
 
   &__content {
     text-align: center;
     position: relative;
     padding: 5em;
-    transition: transform 3s;
     transform-style: preserve-3d;
+
+    @media (prefers-reduced-motion: 'no-preference') {
+      transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
   }
 
-  &:hover .card__content {
+  &:hover .card__content,
+  &:focus-within .card__content {
     transform: rotateY(.5turn);
   }
   
@@ -33,27 +36,30 @@ $level-three: translateZ(2rem);
     left: 0;
     right: 0;
     padding: 18em 2em;
-    outline: 15px solid hsl(0, 0%, 15%);
     backface-visibility: hidden;
     transform-style: preserve-3d;
   }
   
   &__title {
-    font-size: 4.5rem;
-    transform: translateZ(6rem);
+    font-size: 4.3rem;
+    transform: $level-one;
     position: relative;
-    padding-block: 1.2em .2em;
-    text-shadow: 2px 2px hsl(165, 86%, 41%);
+    padding-block: 2.5em .5rem;
   }
   
   &__subtitle {
-    color:hsl(165, 86%, 61%);
+    color:hsl(55, 17%, 47%);
     font-size: 1.2rem;
-    transform: translateZ(4rem);
+    transform: $level-two;
   }
   
   &__body {
-    transform: translateZ(3rem);
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    left: 0;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
   }
 
   &__front {
@@ -61,21 +67,124 @@ $level-three: translateZ(2rem);
     background-image: url('/src/images/taemin.jpg');
     background-size: cover;
     background-blend-mode: overlay;
+    
+    &::before {
+      content: "";
+      border: 3px solid hsl(55, 17%, 47%);
+      position: absolute;
+      transform: $level-three;
+      top: 8px;
+      left: 8px;
+      bottom: 8px;
+      right: 8px;
+    }
   }
 
-  &__front::before {
-    content: "";
-    width: 380px;
-    height: 555px;
-    border: 5px solid hsl(165, 86%, 41%);
-    position: absolute;
-    transform: $level-three;
-    top: 10px;
-    left: 10px;
-  }
-  
   &__back {
     transform: rotateY(.5turn);
     background-color: hsl(216, 40%, 26%);
+    transform-style: preserve-3d;
+
+    &--name {
+      position: absolute;
+      top: 0;
+      left: 0;  
+      margin-inline: auto;
+      padding-block: 1rem;
+      background-color: hsl(216, 40%, 16%);
+      width: 100%;  
+    }
+  }
+}
+
+hr {
+  width: 90%;
+  height: 2px;
+  border-width: 0;
+  background-color:hsl(55, 17%, 47%);
+  margin-inline: auto;
+  transform: $level-three;
+}
+
+.stat-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  justify-content: center;
+  padding-block: 2rem;
+  transform: $level-two;
+}
+
+.debut {
+  text-transform: uppercase;
+  padding-block-start: 4rem;
+  padding-block-end: 2rem;
+  letter-spacing: .5ch;
+  padding-inline-start: .5ch;
+  transform: $level-two;
+
+  &__title {
+    font-size: 1.3rem;
+  }
+
+  &__year {
+    position: relative;
+    font-size: 3rem;
+    color: hsl(55, 17%, 47%);
+    
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+
+  &__num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    font-size: 3rem;
+    color: hsl(55, 17%, 47%);
+    line-height: 1.4;
+  }
+
+  &__icon {
+    width: 100%;
+    height: 100%;
+    max-width: 30px;
+    text-align: center;
+  }
+
+  &__label {
+    text-transform: uppercase;
+    font-size: .8rem;
+    letter-spacing: .3ch;
+    padding-inline-start: .7ch;
+  }
+}
+
+
+.hits {
+  width: 70%;
+  margin-inline: auto;
+  margin-block-start: 2rem;
+  transform: $level-two;
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    letter-spacing: .5ch;
+    padding-block-end: .5rem;
+    padding-inline-start: .5ch;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    line-height: 1;
+    color:hsl(55, 17%, 47%);
   }
 }
